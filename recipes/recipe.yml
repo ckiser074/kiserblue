@@ -21,10 +21,44 @@ modules:
     repos:
       copr:
         - atim/starship
+        - che/nerd-fonts
+        - errornointernet/packages
+        - errornointernet/quickshell
+        - solopasha/hyprland
+        - yalter/niri        
     install:
       packages:
         - micro
         - starship
+        - bat
+        - borgbackup
+        - duf
+        - fd-find
+        - fuzzel
+        - git-delta
+        - iftop
+        - konsole
+        - pwgen
+        - ripgrep
+        - syncthing
+        - tldr
+        - zsh-autosuggestions
+        - zsh-syntax-highlighting
+        - fastfetch
+        - git
+        - snapper
+        - btrfs-assistant
+        - libvirt-daemon-config-network
+        - libvirt-daemon-kvm
+        - qemu-kvm
+        - virt-install
+        - virt-manager
+        - virt-viewer
+        - tailscale
+        - waybar-git
+        - niri
+        - xwayland-satellite
+        - btrfs-progs
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
@@ -38,8 +72,12 @@ modules:
         scope: system
         # If no repo information is specified, Flathub will be used by default
         install: # system flatpaks we want all users to have and not remove
-          - org.mozilla.firefox
-          - org.gnome.Loupe
+        - com.google.Chrome
+        - com.rustdesk.RustDesk
+        - com.vivaldi.Vivaldi
+        - com.github.tchx84.Flatseal
+        - dev.deedles.Trayscale
+        - org.qbittorrent.qBittorrent
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
