@@ -28,37 +28,37 @@ modules:
         - yalter/niri        
     install:
       packages:
-        - micro
-        - starship
         - bat
         - borgbackup
+        - btrfs-assistant
+        - btrfs-progs
         - duf
+        - fastfetch
         - fd-find
         - fuzzel
+        - git
         - git-delta
         - iftop
         - konsole
-        - pwgen
-        - ripgrep
-        - syncthing
-        - tldr
-        - zsh-autosuggestions
-        - zsh-syntax-highlighting
-        - fastfetch
-        - git
-        - snapper
-        - btrfs-assistant
         - libvirt-daemon-config-network
         - libvirt-daemon-kvm
+        - micro
+        - niri
+        - pwgen
         - qemu-kvm
+        - ripgrep
+        - snapper
+        - starship
+        - syncthing
+        - tailscale
+        - tldr
         - virt-install
         - virt-manager
         - virt-viewer
-        - tailscale
         - waybar-git
-        - niri
         - xwayland-satellite
-        - btrfs-progs
+        - zsh-autosuggestions
+        - zsh-syntax-highlighting
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
