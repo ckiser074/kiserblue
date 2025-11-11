@@ -4,6 +4,10 @@ See the [BlueBuild docs](https://blue-build.org/how-to/setup/) for quick setup i
 
 After setup, it is recommended you update this README to describe your custom image.
 
+## Computer Names
+Bishop - Dell Precision Tower 5810  
+Cosmo - Dell Latitude 5480  
+
 ## Installation
 
 > [!WARNING]  
