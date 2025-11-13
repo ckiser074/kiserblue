@@ -19,13 +19,8 @@ modules:
 
   - type: dnf
     repos:
-      copr:
-        - atim/starship
-        - che/nerd-fonts
-        - errornointernet/packages
-        - errornointernet/quickshell
-        - solopasha/hyprland
-        - yalter/niri        
+      copr: []
+     
     install:
       packages:
         - bat
@@ -33,30 +28,26 @@ modules:
         - btrfs-assistant
         - btrfs-progs
         - duf
-        - fastfetch
+       # - fastfetch
         - fd-find
-        - fuzzel
-        - git
-        - git-delta
+       # - git
+       # - git-delta
         - iftop
-        - konsole
+       # - konsole
         - libvirt-daemon-config-network
         - libvirt-daemon-kvm
         - micro
-        - niri
         - pwgen
         - qemu-kvm
         - ripgrep
         - snapper
-        - starship
+       # - starship
         - syncthing
-        - tailscale
+       # - tailscale
         - tldr
         - virt-install
-        - virt-manager
-        - virt-viewer
-        - waybar-git
-        - xwayland-satellite
+       # - virt-manager
+       # - virt-viewer
         - zsh-autosuggestions
         - zsh-syntax-highlighting
     remove:
@@ -76,7 +67,6 @@ modules:
         - com.rustdesk.RustDesk
         - com.vivaldi.Vivaldi
         - com.github.tchx84.Flatseal
-        - dev.deedles.Trayscale
         - org.qbittorrent.qBittorrent
       - scope: user # Also add Flathub user repo, but no user packages
 
