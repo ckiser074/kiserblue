@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 # image will be published to ghcr.io/<user>/<name>
-name: bishop
+name: cosmo
 # description will be included in the image's metadata
 description: This is my personal OS image.
 
@@ -72,8 +72,7 @@ modules:
         - com.rustdesk.RustDesk
         - com.vivaldi.Vivaldi
         - com.github.tchx84.Flatseal
-       # - dev.deedles.Trayscale
-        - org.qbittorrent.qBittorrent
+        - dev.deedles.Trayscale
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
