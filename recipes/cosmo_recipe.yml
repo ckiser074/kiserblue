@@ -8,6 +8,8 @@ description: This is my personal OS image.
 # the base image to build on top of (FROM) and the version tag to use
 base-image: ghcr.io/ublue-os/aurora-dx
 image-version: latest # latest is also supported if you want new updates ASAP
+base-image: ghcr.io/ublue-os/aurora-dx
+image-version: latest # latest is also supported if you want new updates ASAP
 
 # module configuration, executed in order
 # you can include multiple instances of the same module
@@ -20,10 +22,6 @@ modules:
   - type: dnf
     repos:
       copr:
-        - atim/starship
-        - che/nerd-fonts
-        - errornointernet/packages
-        - errornointernet/quickshell
         - solopasha/hyprland
         - yalter/niri        
     install:
@@ -33,13 +31,13 @@ modules:
         - btrfs-assistant
         - btrfs-progs
         - duf
-        - fastfetch
+       # - fastfetch
         - fd-find
         - fuzzel
-        - git
-        - git-delta
+       # - git
+       # - git-delta
         - iftop
-        - konsole
+       # - konsole
         - libvirt-daemon-config-network
         - libvirt-daemon-kvm
         - micro
@@ -48,13 +46,13 @@ modules:
         - qemu-kvm
         - ripgrep
         - snapper
-        - starship
+       # - starship
         - syncthing
-        - tailscale
+       # - tailscale
         - tldr
         - virt-install
-        - virt-manager
-        - virt-viewer
+       # - virt-manager
+       # - virt-viewer
         - waybar-git
         - xwayland-satellite
         - zsh-autosuggestions
