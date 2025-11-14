@@ -3,7 +3,7 @@
 # image will be published to ghcr.io/<user>/<name>
 name: bishop
 # description will be included in the image's metadata
-description: This is my personal OS image.
+description: Bishop desktop image.
 
 # the base image to build on top of (FROM) and the version tag to use
 base-image: ghcr.io/ublue-os/aurora-dx
@@ -23,33 +23,33 @@ modules:
      
     install:
       packages:
-        - bat
-        - borgbackup
-        - btrfs-assistant
-        - btrfs-progs
-        - duf
-       # - fastfetch
-        - fd-find
-       # - git
-       # - git-delta
-        - iftop
-       # - konsole
-        - libvirt-daemon-config-network
-        - libvirt-daemon-kvm
-        - micro
-        - pwgen
-        - qemu-kvm
-        - ripgrep
-        - snapper
-       # - starship
-        - syncthing
-       # - tailscale
-        - tldr
-        - virt-install
-       # - virt-manager
-       # - virt-viewer
-        - zsh-autosuggestions
-        - zsh-syntax-highlighting
+        - bat #cat but better 
+        - borgbackup #backup solution 
+        - btrfs-assistant #btrfs gui tool 
+        - btrfs-progs #btrfs tools 
+        - duf #disk usage utility 
+       # - fastfetch #system info tool
+        - fd-find #find alternative 
+       # - git #version control system
+       # - git-delta #git diff viewer
+        - iftop #network monitor 
+       # - konsole #terminal emulator
+        - libvirt-daemon-config-network # libvirt network support 
+        - libvirt-daemon-kvm # kvm support for libvirt 
+        - micro # terminal based text editor 
+        - pwgen # password generator 
+        - qemu-kvm # kvm support for qemu 
+        - ripgrep #search tool 
+        - snapper #btrfs snapshot tool 
+       # - starship #shell prompt
+        - syncthing #file sync tool 
+       # - tailscale #vpn tool
+        - tldr # simplified man pages 
+        - virt-install # tool for installing vms 
+       # - virt-manager # vm manager gui
+       # - virt-viewer # vm viewer 
+        - zsh-autosuggestions # zsh plugin for command autosuggestions
+        - zsh-syntax-highlighting # zsh plugin for syntax highlighting
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
@@ -63,11 +63,11 @@ modules:
         scope: system
         # If no repo information is specified, Flathub will be used by default
         install: # system flatpaks we want all users to have and not remove
-        - com.google.Chrome
-        - com.rustdesk.RustDesk
-        - com.vivaldi.Vivaldi
-        - com.github.tchx84.Flatseal
-        - org.qbittorrent.qBittorrent
+        - com.google.Chrome # web browser 
+        - com.rustdesk.RustDesk # remote desktop software
+        - com.vivaldi.Vivaldi # web browser 
+        - com.github.tchx84.Flatseal # flatpak permissions manager
+        - org.qbittorrent.qBittorrent # torrent client
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
