@@ -1,6 +1,6 @@
 ---
 name: cosmic
-description: cosmic-atomic-main with modifications.
+description: cosmic-atomic-main with modifications. # https://github.com/zaravi/build-oci/blob/main/recipes/cosmic.yml
     
 base-image: ghcr.io/ublue-os/cosmic-atomic-main
 image-version: latest
