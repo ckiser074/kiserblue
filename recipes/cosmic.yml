@@ -1,0 +1,82 @@
+---
+name: cosmic
+description: cosmic-atomic-main with modifications. # https://github.com/zaravi/build-oci/blob/main/recipes/cosmic.yml
+    
+base-image: ghcr.io/ublue-os/cosmic-atomic-main
+image-version: latest
+
+stages:
+  - name: cosmic-ext-extra-sessions
+    from: docker.io/library/rust
+    modules:
+      - type: script
+        snippets:
+          - git clone https://github.com/Drakulix/cosmic-ext-extra-sessions.git
+          - git -C cosmic-ext-extra-sessions submodule update --init
+          - cargo install just
+          - cd cosmic-ext-extra-sessions && just build && just install-niri
+          - sed -i 's|/usr/local/bin/start-cosmic-ext-niri|/usr/bin/start-cosmic-ext-niri|g' /usr/local/share/wayland-sessions/cosmic-ext-niri.desktop
+modules:
+  - type: copy
+    from: cosmic-ext-extra-sessions
+    src: /usr/local/bin/cosmic-ext-alternative-startup
+    dest: /usr/bin/cosmic-ext-alternative-startup
+
+  - type: copy
+    from: cosmic-ext-extra-sessions
+    src: /usr/local/share/wayland-sessions/cosmic-ext-niri.desktop
+    dest: /usr/share/wayland-sessions/cosmic-ext-niri.desktop
+
+  - type: copy
+    from: cosmic-ext-extra-sessions
+    src: /usr/local/bin/start-cosmic-ext-niri
+    dest: /usr/bin/start-cosmic-ext-niri
+
+  - type: files
+    files:
+      - source: system
+        destination: /
+
+  - type: script
+
+  - type: rpm-ostree
+    repos:
+      - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%OS_VERSION%/atim-starship-fedora-%OS_VERSION%.repo
+      - https://copr.fedorainfracloud.org/coprs/lihaohong/yazi/repo/fedora-%OS_VERSION%/lihaohong-yazi-fedora-%OS_VERSION%.repo
+      - https://copr.fedorainfracloud.org/coprs/yalter/niri-git/repo/fedora-%OS_VERSION%/yalter-niri-fedora-%OS_VERSION%.repo
+
+    install:
+      # AMDGPU
+      # - corectrl # AMD GPU control center
+
+      # Terminal
+      - alacritty # Fast GPU terminal emulator
+
+      - nu # Modern shell alternative to bash/fish/zsh
+      - dash # Lightweight POSIX compliant shell
+      - starship # Cross-shell prompt
+      - atuin # Shell history manager
+      - zoxide # Fast directory jumper
+
+      - helix # Modern terminal-based text editor
+      - yazi # Yet Another Zsh Installer
+      - btop # Resource monitor
+      
+      # Virtualization
+      - qemu #  QEMU emulator
+      - edk2-ovmf # UEFI firmware for virtual machines
+      - virt-manager # Virtual machine manager
+      - virt-viewer # Virtual machine viewer
+
+
+      # Compositor and friends.
+      - niri # Wayland compositor based on wlroots
+      - nautilus # File manager
+      - sushi # Quick previewer for Nautilus
+
+      # Disks
+      - gdisk # GPT partitioning tool
+      - btrfs-progs # Btrfs filesystem utilities
+
+
+  - type: signing #
