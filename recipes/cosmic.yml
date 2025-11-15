@@ -73,6 +73,7 @@ modules:
       - niri # Wayland compositor based on wlroots
       - nautilus # File manager
       - sushi # Quick previewer for Nautilus
+      - fuzzel 
 
       # Disks
       - gdisk # GPT partitioning tool
