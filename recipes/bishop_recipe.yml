@@ -50,6 +50,14 @@ modules:
        # - virt-viewer # vm viewer 
         - zsh-autosuggestions # zsh plugin for command autosuggestions
         - zsh-syntax-highlighting # zsh plugin for syntax highlighting
+
+            # network shares
+        - samba
+        - nmap
+        - samba-winbind
+        - samba-winexe
+        - wsdd
+        
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
