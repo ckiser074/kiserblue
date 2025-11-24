@@ -1,78 +1,81 @@
 ---
-# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
-# image will be published to ghcr.io/<user>/<name>
 name: cosmo
-# description will be included in the image's metadata
-description: Cosmo Laptop image.
+description: cosmic-atomic-main with modifications.
+    
+base-image: ghcr.io/ublue-os/cosmic-atomic-main
+image-version: latest
 
-# the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/aurora-dx
-image-version: latest # latest is also supported if you want new updates ASAP
-
-# module configuration, executed in order
-# you can include multiple instances of the same module
+stages:
+  - name: cosmic-ext-extra-sessions
+    from: docker.io/library/rust
+    modules:
+      - type: script
+        snippets:
+          - git clone https://github.com/Drakulix/cosmic-ext-extra-sessions.git
+          - git -C cosmic-ext-extra-sessions submodule update --init
+          - cargo install just
+          - cd cosmic-ext-extra-sessions && just build && just install-niri
+          - sed -i 's|/usr/local/bin/start-cosmic-ext-niri|/usr/bin/start-cosmic-ext-niri|g' /usr/local/share/wayland-sessions/cosmic-ext-niri.desktop
 modules:
+  - type: copy
+    from: cosmic-ext-extra-sessions
+    src: /usr/local/bin/cosmic-ext-alternative-startup
+    dest: /usr/bin/cosmic-ext-alternative-startup
+
+  - type: copy
+    from: cosmic-ext-extra-sessions
+    src: /usr/local/share/wayland-sessions/cosmic-ext-niri.desktop
+    dest: /usr/share/wayland-sessions/cosmic-ext-niri.desktop
+
+  - type: copy
+    from: cosmic-ext-extra-sessions
+    src: /usr/local/bin/start-cosmic-ext-niri
+    dest: /usr/bin/start-cosmic-ext-niri
+
   - type: files
     files:
       - source: system
-        destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
+        destination: /
 
-  - type: dnf
+  - type: script
+
+  - type: rpm-ostree
     repos:
-      copr:
-        - solopasha/hyprland # hyprland wm repo
-        - yalter/niri # niri file manager        
+      - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%OS_VERSION%/atim-starship-fedora-%OS_VERSION%.repo
+      - https://copr.fedorainfracloud.org/coprs/yalter/niri-git/repo/fedora-%OS_VERSION%/yalter-niri-fedora-%OS_VERSION%.repo
+
     install:
-      packages:
-        - bat #cat but better
-        - borgbackup #backup solution
-        - btrfs-assistant #btrfs gui tool 
-        - btrfs-progs #btrfs tools
-        - duf #disk usage utility
-       # - fastfetch #system info tool
-        - fd-find #find alternative
-        - fuzzel # app launcher
-       # - git #version control system
-       # - git-delta #git diff viewer
-        - iftop #network monitor
-       # - konsole #terminal emulator
-        - libvirt-daemon-config-network # libvirt network support
-        - libvirt-daemon-kvm # kvm support for libvirt
-        - micro # terminal based text editor
-        - niri # file manager
-        - pwgen # password generator
-        - qemu-kvm # kvm support for qemu
-        - ripgrep #search tool
-        - snapper #btrfs snapshot tool
-       # - starship #shell prompt
-        - syncthing #file sync tool
-       # - tailscale  #vpn tool
-        - tldr # simplified man pages
-        - virt-install # tool for installing vms 
-       # - virt-manager   # vm manager gui
-       # - virt-viewer  # vm viewer
-        - waybar-git # wayland status bar
-        - xwayland-satellite # xwayland support for hyprland
-        - zsh-autosuggestions # zsh plugin for command autosuggestions
-        - zsh-syntax-highlighting # zsh plugin for syntax highlighting
-    remove:
-      packages:
-        # example: removing firefox (in favor of the flatpak)
-        # "firefox" is the main package, "firefox-langpacks" is a dependency
-        - firefox
-        - firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
+      # AMDGPU
+      - corectrl
 
-  - type: default-flatpaks
-    configurations:
-      - notify: true # Send notification after install/uninstall is finished (true/false)
-        scope: system
-        # If no repo information is specified, Flathub will be used by default
-        install: # system flatpaks we want all users to have and not remove
-        - com.google.Chrome # web browser
-        - com.rustdesk.RustDesk # remote desktop software
-        - com.vivaldi.Vivaldi # web browser
-        - com.github.tchx84.Flatseal # flatpak permissions manager
-        - dev.deedles.Trayscale # image viewer
-      - scope: user # Also add Flathub user repo, but no user packages
+      # Terminal
+      - alacritty
 
-  - type: signing # this sets up the proper policy & signing files for signed images to work fully
+      - nu
+      - dash
+      - starship
+      - atuin
+      - zoxide
+
+      - helix
+      - btop
+      
+      # Virtualization
+      - qemu
+      - edk2-ovmf
+      - virt-manager
+      - virt-viewer
+
+      # Compositor and friends.
+      - niri
+      - nautilus
+      - sushi
+
+      # Disks
+      - gdisk
+      - btrfs-progs
+      - batrfs-assistant
+
+      - bat
+
+  - type: signing
