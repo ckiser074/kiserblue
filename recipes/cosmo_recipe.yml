@@ -82,4 +82,18 @@ modules:
 
         - bat # cat but better
 
+  - type: default-flatpaks
+    configurations:
+      - notify: true # Send notification after install/uninstall is finished (true/false)
+        scope: system
+        # If no repo information is specified, Flathub will be used by default
+        install: # system flatpaks we want all users to have and not remove
+        - com.google.Chrome # web browser 
+        - com.rustdesk.RustDesk # remote desktop software
+        - com.vivaldi.Vivaldi # web browser 
+        - com.github.tchx84.Flatseal # flatpak permissions manager
+        - com.rustdesk.RustDesk # remote desktop software
+      - scope: user # Also add Flathub user repo, but no user packages
+
+
   - type: signing
