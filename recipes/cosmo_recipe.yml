@@ -2,80 +2,84 @@
 name: cosmo
 description: cosmic-atomic-main with modifications.
     
-base-image: ghcr.io/ublue-os/cosmic-atomic-main
+base-image: ghcr.io/ublue-os/base-main
 image-version: latest
 
-stages:
-  - name: cosmic-ext-extra-sessions
-    from: docker.io/library/rust
-    modules:
-      - type: script
-        snippets:
-          - git clone https://github.com/Drakulix/cosmic-ext-extra-sessions.git
-          - git -C cosmic-ext-extra-sessions submodule update --init
-          - cargo install just
-          - cd cosmic-ext-extra-sessions && just build && just install-niri
-          - sed -i 's|/usr/local/bin/start-cosmic-ext-niri|/usr/bin/start-cosmic-ext-niri|g' /usr/local/share/wayland-sessions/cosmic-ext-niri.desktop
 modules:
-  - type: copy
-    from: cosmic-ext-extra-sessions
-    src: /usr/local/bin/cosmic-ext-alternative-startup
-    dest: /usr/bin/cosmic-ext-alternative-startup
-
-  - type: copy
-    from: cosmic-ext-extra-sessions
-    src: /usr/local/share/wayland-sessions/cosmic-ext-niri.desktop
-    dest: /usr/share/wayland-sessions/cosmic-ext-niri.desktop
-
-  - type: copy
-    from: cosmic-ext-extra-sessions
-    src: /usr/local/bin/start-cosmic-ext-niri
-    dest: /usr/bin/start-cosmic-ext-niri
-
   - type: files
     files:
       - source: system
         destination: /
 
-  - type: script
-
-  - type: rpm-ostree
+  - type: dnf
     repos:
-      - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%OS_VERSION%/atim-starship-fedora-%OS_VERSION%.repo
-      - https://copr.fedorainfracloud.org/coprs/yalter/niri-git/repo/fedora-%OS_VERSION%/yalter-niri-fedora-%OS_VERSION%.repo
-
+      files:
+        - terra-extras.repo
+        - terra-mesa.repo
+        - terra-nvidia.repo
+        - terra.repo
     install:
-      # AMDGPU
-      - corectrl
+      packages:
+        # Cosmic as in Cosmic Fedora 43 atomic image
+        # - fedora-release-identity-cosmic-atomic-43-25.noarch
+        # - fedora-release-cosmic-atomic-43-25.noarch
+        - cosmic-panel # cosmic panel
+        - cosmic-randr # cosmic randr tool
+        - cosmic-control-center # cosmic control center
+        - cosmic-icon-theme # cosmic icon theme
+        - cosmic-app-library # cosmic app library
+        - cosmic-idle # cosmic idle daemon
+        - cosmic-notifications # cosmic notification daemon
+        - cosmic-term # cosmic terminal
+        - cosmic-screenshot # cosmic screenshot tool
+        - cosmic-osd # cosmic on screen display
+        - cosmic-applets # cosmic applets
+        - cosmic-launcher # cosmic application launcher
+        - xdg-desktop-portal-cosmic # xdg desktop portal for cosmic
+        - cosmic-wallpapers-extra # extra cosmic wallpapers
+        - cosmic-boot-animation # cosmic boot animation
+        - cosmic-initial-setup # cosmic initial setup tool
+        - cosmic-files # cosmic file manager
+        - cosmic-bg # cosmic background tool
+        - cosmic-comp # cosmic compositor
+        - cosmic-greeter # cosmic greeter
+        - cosmic-workspaces # cosmic workspaces
+        - cosmic-settings-daemon # cosmic settings daemon
+        - cosmic-settings # cosmic settings app
+        - cosmic-config-fedora # cosmic fedora config tool
+        - cosmic-dock # cosmic dock
+        - cosmic-menus # cosmic menus
+        - cosmic-session # cosmic session manager
+        - cosmic-player # cosmic media player
+        - cosmic-calculator # cosmic calculator app
+        - cosmic-store # cosmic app store
+        - cosmic-software-updater # cosmic software updater
+        - cosmic-edit # cosmic text editor
+        - cosmic-photos # cosmic photo viewer
+        - cosmic-wallpapers # cosmic wallpapers
+        - starship # cross-shell prompt
+        - ghostty # terminal sharing tool
+        - syncthing # file sync tool
+        - syncthingtray # syncthing tray app
+        - tailscale # vpn tool         
+        
+        # Terminal
+        - alacritty # GPU accelerated terminal emulator
 
-      # Terminal
-      - alacritty
+        - fish # friendly interactive shell      
+              
+        # Virtualization
+        - qemu # qemu emulator
+        - edk2-ovmf # UEFI firmware for qemu
+        - virt-manager # virtual machine manager
+        - virt-viewer # virtual machine viewer
 
-      - nu
-      - dash
-      - starship
-      - atuin
-      - zoxide
+        # Disks
+        - gdisk # GPT partitioning tool
+        - btrfs-progs # btrfs tools
+        - btrfs-assistant # btrfs gui tool
+        - snapper # btrfs snapshot tool
 
-      - helix
-      - btop
-      
-      # Virtualization
-      - qemu
-      - edk2-ovmf
-      - virt-manager
-      - virt-viewer
-
-      # Compositor and friends.
-      - niri
-      - nautilus
-      - sushi
-
-      # Disks
-      - gdisk
-      - btrfs-progs
-      - btrfs-assistant
-
-      - bat
+        - bat # cat but better
 
   - type: signing

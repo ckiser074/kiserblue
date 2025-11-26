@@ -54,10 +54,10 @@ modules:
 
             # network shares
         - samba # samba
-        - nmap
-        - samba-winbind
-        - samba-winexe
-        - wsdd
+        - nmap # network scanner
+        - samba-winbind # samba winbind service
+        - samba-winexe # samba winexe service
+        - wsdd # web service discovery for samba
         
     remove:
       packages:
@@ -77,7 +77,7 @@ modules:
         - com.vivaldi.Vivaldi # web browser 
         - com.github.tchx84.Flatseal # flatpak permissions manager
         - org.qbittorrent.qBittorrent # torrent client
-        - com.rustdesk.RustDesk 
+        - com.rustdesk.RustDesk # remote desktop software
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
