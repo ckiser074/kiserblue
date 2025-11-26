@@ -25,7 +25,6 @@ modules:
         # - fedora-release-cosmic-atomic-43-25.noarch
         - cosmic-panel # cosmic panel
         - cosmic-randr # cosmic randr tool
-        - cosmic-control-center # cosmic control center
         - cosmic-icon-theme # cosmic icon theme
         - cosmic-app-library # cosmic app library
         - cosmic-idle # cosmic idle daemon
@@ -36,7 +35,6 @@ modules:
         - cosmic-applets # cosmic applets
         - cosmic-launcher # cosmic application launcher
         - xdg-desktop-portal-cosmic # xdg desktop portal for cosmic
-        - cosmic-wallpapers-extra # extra cosmic wallpapers
         - cosmic-boot-animation # cosmic boot animation
         - cosmic-initial-setup # cosmic initial setup tool
         - cosmic-files # cosmic file manager
@@ -60,7 +58,6 @@ modules:
         - starship # cross-shell prompt
         - ghostty # terminal sharing tool
         - syncthing # file sync tool
-        - syncthingtray # syncthing tray app
         - tailscale # vpn tool         
         
         # Terminal
@@ -93,6 +90,8 @@ modules:
         - com.vivaldi.Vivaldi # web browser 
         - com.github.tchx84.Flatseal # flatpak permissions manager
         - com.rustdesk.RustDesk # remote desktop software
+        - dev.deedles.Trayscale # Tailscale tray
+        - io.github.pwr_solaar.solaar
       - scope: user # Also add Flathub user repo, but no user packages
 
 
