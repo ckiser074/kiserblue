@@ -52,7 +52,10 @@ modules:
         - starship # cross-shell prompt
         - ghostty # terminal sharing tool
         - syncthing # file sync tool
-        - tailscale # vpn tool         
+        - tailscale # vpn tool
+        - fastfetch #system info tool
+        - git #version control system
+        - git-delta #git diff viewer
         
         # Terminal
         - alacritty # GPU accelerated terminal emulator
