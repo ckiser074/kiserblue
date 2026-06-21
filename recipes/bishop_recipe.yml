@@ -81,3 +81,28 @@ modules:
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
+  
+  - type: fonts
+      fonts:
+        nerd-fonts:
+          - FiraCode
+          - JetBrainsMono
+          - NerdFontsSymbolsOnly
+          - Ubuntu
+          - CascadiaCode
+          - CascadiaMono
+        google-fonts:
+          - Roboto
+          - Open Sans
+          - Inter
+          - NunitoSans
+          - Exo
+          - Overpass
+          - PublicSans
+          - Inter
+          - Lato
+          - Figtree
+          - RobotoSlab
+          - Barlow
+          - BebasNeue
+          - Jost
