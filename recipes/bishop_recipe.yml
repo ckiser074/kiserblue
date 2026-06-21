@@ -91,7 +91,7 @@ modules:
           - Ubuntu
           - CascadiaCode
           - CascadiaMono
-        google-fonts:
+      google-fonts:
           - Roboto
           - Open Sans
           - Inter
