@@ -28,7 +28,7 @@ jobs:
         recipe:
           # !! Add your recipes here
           - bishop_recipe.yml # the bishop recipe
-          - cosmo_recipe.yml # the cosmo recipe 
+          # - cosmo_recipe.yml # the cosmo recipe 
           # - cosmic.yml # the cosmic recipe          
     steps:
       # the build is fully handled by the reusable github action
