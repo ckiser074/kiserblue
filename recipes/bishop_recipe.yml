@@ -6,7 +6,7 @@ name: bishop
 description: Bishop desktop image.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/aurora-dx
+base-image: ghcr.io/ublue-os/aurora-dx:stable
 image-version: latest # latest is also supported if you want new updates ASAP
 
 # module configuration, executed in order
@@ -24,10 +24,9 @@ modules:
     install:
       packages:
         - bat #cat but better 
-        - borgbackup #backup solution 
         - btrfs-assistant #btrfs gui tool 
         - btrfs-progs #btrfs tools
-        - dialog 
+       # - dialog 
         - duf #disk usage utility 
        # - fastfetch #system info tool
         - fd-find #find alternative 
