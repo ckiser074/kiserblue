@@ -64,3 +64,6 @@ These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](ht
 ```bash
 cosign verify --key cosign.pub ghcr.io/ckiser074/kiserblue
 ```
+## Reference
+U-Blue Aurora base packages = https://github.com/ublue-os/aurora/blob/main/build_files/base/01-packages.sh
+U-Blue Aurora-DX additional packages = https://github.com/ublue-os/aurora/blob/main/build_files/dx/00-dx.sh
