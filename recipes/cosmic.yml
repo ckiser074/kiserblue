@@ -1,83 +1,107 @@
 ---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+# image will be published to ghcr.io/<user>/<name>
 name: cosmic
-description: cosmic-atomic-main with modifications. # https://github.com/zaravi/build-oci/blob/main/recipes/cosmic.yml
-    
-base-image: ghcr.io/ublue-os/cosmic-atomic-main
-image-version: latest
+# description will be included in the image's metadata
+description: Cosmic desktop image.
 
-stages:
-  - name: cosmic-ext-extra-sessions
-    from: docker.io/library/rust
-    modules:
-      - type: script
-        snippets:
-          - git clone https://github.com/Drakulix/cosmic-ext-extra-sessions.git
-          - git -C cosmic-ext-extra-sessions submodule update --init
-          - cargo install just
-          - cd cosmic-ext-extra-sessions && just build && just install-niri
-          - sed -i 's|/usr/local/bin/start-cosmic-ext-niri|/usr/bin/start-cosmic-ext-niri|g' /usr/local/share/wayland-sessions/cosmic-ext-niri.desktop
+# the base image to build on top of (FROM) and the version tag to use
+base-image: ghcr.io/blue-build/base-images/fedora-cosmic
+image-version: latest # latest is also supported if you want new updates ASAP
+
+# module configuration, executed in order
+# you can include multiple instances of the same module
 modules:
-  - type: copy
-    from: cosmic-ext-extra-sessions
-    src: /usr/local/bin/cosmic-ext-alternative-startup
-    dest: /usr/bin/cosmic-ext-alternative-startup
-
-  - type: copy
-    from: cosmic-ext-extra-sessions
-    src: /usr/local/share/wayland-sessions/cosmic-ext-niri.desktop
-    dest: /usr/share/wayland-sessions/cosmic-ext-niri.desktop
-
-  - type: copy
-    from: cosmic-ext-extra-sessions
-    src: /usr/local/bin/start-cosmic-ext-niri
-    dest: /usr/bin/start-cosmic-ext-niri
-
   - type: files
     files:
       - source: system
-        destination: /
+        destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
-  - type: script
-
-  - type: rpm-ostree
+  - type: dnf
     repos:
-      - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%OS_VERSION%/atim-starship-fedora-%OS_VERSION%.repo
-      - https://copr.fedorainfracloud.org/coprs/lihaohong/yazi/repo/fedora-%OS_VERSION%/lihaohong-yazi-fedora-%OS_VERSION%.repo
-      - https://copr.fedorainfracloud.org/coprs/yalter/niri-git/repo/fedora-%OS_VERSION%/yalter-niri-fedora-%OS_VERSION%.repo
-
+      copr: []
+     
     install:
-      # AMDGPU
-      # - corectrl # AMD GPU control center
+      packages:
+        - bat #cat but better 
+        - btrfs-assistant #btrfs gui tool 
+        - btrfs-progs #btrfs tools
+       # - dialog 
+        - duf #disk usage utility 
+       # - fastfetch #system info tool
+        - fd-find #find alternative 
+       # - git #version control system
+       # - git-delta #git diff viewer
+        - iftop #network monitor 
+       # - konsole #terminal emulator
+        - libvirt-daemon-config-network # libvirt network support 
+        - libvirt-daemon-kvm # kvm support for libvirt 
+        - micro # terminal based text editor 
+        - pwgen # password generator 
+        - qemu-kvm # kvm support for qemu 
+        - ripgrep #search tool 
+        - snapper #btrfs snapshot tool 
+       # - starship #shell prompt
+        - syncthing #file sync tool 
+       # - tailscale #vpn tool
+        - tldr # simplified man pages 
+        - virt-install # tool for installing vms 
+       # - virt-manager # vm manager gui
+       # - virt-viewer # vm viewer 
+        - zsh-autosuggestions # zsh plugin for command autosuggestions
+        - zsh-syntax-highlighting # zsh plugin for syntax highlighting
 
-      # Terminal
-      - alacritty # Fast GPU terminal emulator
+            # network shares
+        - samba # samba
+        - nmap # network scanner
+        - samba-winbind # samba winbind service
+        - samba-winexe # samba winexe service
+        - wsdd # web service discovery for samba
+        
+    remove:
+      packages:
+        # example: removing firefox (in favor of the flatpak)
+        # "firefox" is the main package, "firefox-langpacks" is a dependency
+        - firefox
+        - firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
 
-      - nu # Modern shell alternative to bash/fish/zsh
-      - dash # Lightweight POSIX compliant shell
-      - starship # Cross-shell prompt
-      - atuin # Shell history manager
-      - zoxide # Fast directory jumper
+  - type: default-flatpaks
+    configurations:
+      - notify: true # Send notification after install/uninstall is finished (true/false)
+        scope: system
+        # If no repo information is specified, Flathub will be used by default
+        install: # system flatpaks we want all users to have and not remove
+        - com.google.Chrome # web browser 
+        - com.rustdesk.RustDesk # remote desktop software
+        - com.vivaldi.Vivaldi # web browser 
+        - com.github.tchx84.Flatseal # flatpak permissions manager
+        - org.qbittorrent.qBittorrent # torrent client
+        - com.rustdesk.RustDesk # remote desktop software
+      - scope: user # Also add Flathub user repo, but no user packages
 
-      - helix # Modern terminal-based text editor
-      - yazi # Yet Another Zsh Installer
-      - btop # Resource monitor
-      
-      # Virtualization
-      - qemu #  QEMU emulator
-      - edk2-ovmf # UEFI firmware for virtual machines
-      - virt-manager # Virtual machine manager
-      - virt-viewer # Virtual machine viewer
-
-
-      # Compositor and friends.
-      - niri # Wayland compositor based on wlroots
-      - nautilus # File manager
-      - sushi # Quick previewer for Nautilus
-      - fuzzel 
-
-      # Disks
-      - gdisk # GPT partitioning tool
-      - btrfs-progs # Btrfs filesystem utilities
-
-
-  - type: signing #
+  - type: signing # this sets up the proper policy & signing files for signed images to work fully
+  
+  - type: fonts
+    fonts:
+      nerd-fonts:
+          - FiraCode
+          - JetBrainsMono
+          - NerdFontsSymbolsOnly
+          - Ubuntu
+          - CascadiaCode
+          - CascadiaMono
+      google-fonts:
+          - Roboto
+          - Open Sans
+          - Inter
+          - NunitoSans
+          - Exo
+          - Overpass
+          - PublicSans
+          - Inter
+          - Lato
+          - Figtree
+          - RobotoSlab
+          - Barlow
+          - BebasNeue
+          - Jost
