@@ -28,7 +28,7 @@ modules:
         - btrfs-progs #btrfs tools
        # - dialog 
         - duf #disk usage utility 
-       # - fastfetch #system info tool
+        - fastfetch #system info tool
         - fd-find #find alternative 
        # - git #version control system
        # - git-delta #git diff viewer
@@ -43,7 +43,7 @@ modules:
         - snapper #btrfs snapshot tool 
        # - starship #shell prompt
         - syncthing #file sync tool 
-       # - tailscale #vpn tool
+        - tailscale #vpn tool
         - tldr # simplified man pages 
         - virt-install # tool for installing vms 
        # - virt-manager # vm manager gui
