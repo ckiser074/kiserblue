@@ -16,7 +16,13 @@ modules:
     files:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
-
+  
+  # Create /var/lib/alternatives before package installs, then apply
+  - type: script
+    scripts:
+      - 00-prepare.sh
+      - 10-customize.sh
+      
   - type: dnf
     repos:
       copr: []
