@@ -21,7 +21,7 @@ modules:
   - type: script
     scripts:
       - 00-prepare.sh
-      - 10-customize.sh
+      - 10-install-winboat.sh
       
   - type: dnf
     repos:
