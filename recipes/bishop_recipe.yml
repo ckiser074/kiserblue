@@ -53,9 +53,13 @@ modules:
         - tldr # simplified man pages 
         - virt-install # tool for installing vms 
        # - virt-manager # vm manager gui
-       # - virt-viewer # vm viewer 
+       # - virt-viewer # vm viewer
+        - zsh
         - zsh-autosuggestions # zsh plugin for command autosuggestions
         - zsh-syntax-highlighting # zsh plugin for syntax highlighting
+
+        - rsync
+        - rclone
 
             # network shares
         - samba # samba
@@ -83,6 +87,9 @@ modules:
         - com.github.tchx84.Flatseal # flatpak permissions manager
         - org.qbittorrent.qBittorrent # torrent client
         - com.rustdesk.RustDesk # remote desktop software
+        - com.usebottles.bottles
+        - org.audacityteam.Audacity
+        - org.musicbrainz.Picard
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
