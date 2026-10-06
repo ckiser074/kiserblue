@@ -24,52 +24,40 @@ modules:
       - 10-install-winboat.sh
 
   - type: dnf
-    install:
-      - bat # cat but better
-      - btrfs-assistant # btrfs gui tool
-      - btrfs-progs # btrfs tools
-      # - dialog
-      - duf # disk usage utility
-      # - fastfetch # system info tool
-      - fd-find # find alternative
-      # - git # version control system
-      # - git-delta # git diff viewer
-      - iftop # network monitor
-      # - konsole # terminal emulator
-      - libvirt-daemon-config-network # libvirt network support
-      - libvirt-daemon-kvm # kvm support for libvirt
-      - micro # terminal based text editor
-      - pwgen # password generator
-      - qemu-kvm # kvm support for qemu
-      - ripgrep # search tool
-      - snapper # btrfs snapshot tool
-      # - starship # shell prompt
-      - syncthing # file sync tool
-      # - tailscale # vpn tool
-      - tldr # simplified man pages
-      - virt-install # tool for installing vms
-      # - virt-manager # vm manager gui
-      # - virt-viewer # vm viewer
-      - zsh
-      - zsh-autosuggestions # zsh plugin for command autosuggestions
-      - zsh-syntax-highlighting # zsh plugin for syntax highlighting
-      - rsync
-      - rclone
-      # network shares
-      - samba # samba
-      - nmap # network scanner
-      - samba-winbind # samba winbind service
-      - samba-winexe # samba winexe service
-      - wsdd # web service discovery for samba
-      - https://github.com/AprilNEA/OpenLogi/releases/download/v0.8.11/openlogi-v0.8.11-linux-amd64.rpm
-    options:
-      tsflags: noscripts
-    remove:
-      packages:
-        # example: removing firefox (in favor of the flatpak)
-        # "firefox" is the main package, "firefox-langpacks" is a dependency
+    packages:
+      install:
+        - bat
+        - btrfs-assistant
+        - btrfs-progs
+        - duf
+        - fd-find
+        - iftop
+        - libvirt-daemon-config-network
+        - libvirt-daemon-kvm
+        - micro
+        - pwgen
+        - qemu-kvm
+        - ripgrep
+        - snapper
+        - syncthing
+        - tldr
+        - virt-install
+        - zsh
+        - zsh-autosuggestions
+        - zsh-syntax-highlighting
+        - rsync
+        - rclone
+        - samba
+        - nmap
+        - samba-winbind
+        - samba-winexe
+        - wsdd
+        - https://github.com/AprilNEA/OpenLogi/releases/download/v0.8.11/openlogi-v0.8.11-linux-amd64.rpm
+      remove:
         - firefox
-        - firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
+        - firefox-langpacks
+      options:
+        tsflags: noscripts
 
   - type: default-flatpaks
     configurations:
