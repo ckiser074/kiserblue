@@ -1,5 +1,5 @@
 ---
-yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 # image will be published to ghcr.io/<user>/<name>
 name: bishop
 # description will be included in the image's metadata
@@ -24,8 +24,9 @@ modules:
       - 10-install-winboat.sh
 
   - type: dnf
-    packages:
-      install:
+    install:
+      tsflags: noscripts
+      packages:
         - bat
         - btrfs-assistant
         - btrfs-progs
@@ -56,8 +57,6 @@ modules:
       remove:
         - firefox
         - firefox-langpacks
-      options:
-        tsflags: noscripts
 
   - type: default-flatpaks
     configurations:
@@ -87,7 +86,7 @@ modules:
         - CascadiaMono
       google-fonts:
         - Roboto
-        - Open Sans
+        - "Open Sans"
         - Inter
         - NunitoSans
         - Exo
