@@ -54,7 +54,7 @@ modules:
         - samba-winexe
         - wsdd
         - https://github.com/AprilNEA/OpenLogi/releases/download/v0.8.11/openlogi-v0.8.11-linux-amd64.rpm
-      remove:
+    remove:
         - firefox
         - firefox-langpacks
 
