@@ -60,7 +60,7 @@ modules:
         - rsync
         - rclone
 
-            # network shares
+         # network shares
         - samba # samba
         - nmap # network scanner
         - samba-winbind # samba winbind service
