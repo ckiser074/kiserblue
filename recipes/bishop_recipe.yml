@@ -25,7 +25,6 @@ modules:
 
   - type: dnf
     install:
-      packages:
         - bat # cat but better
         - btrfs-assistant # btrfs gui tool
         - btrfs-progs # btrfs tools
