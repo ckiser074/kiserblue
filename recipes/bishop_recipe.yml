@@ -22,6 +22,7 @@ modules:
     scripts:
       - 00-prepare.sh
       - 10-install-winboat.sh
+    snippets:
       - dnf -y config-manager setopt tsflags=noscripts # Prevents postinstall scripts from running (and failing the build)
 
   - type: dnf
