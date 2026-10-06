@@ -44,4 +44,4 @@ jobs:
           maximize_build_space: true
           
           # enable for detailed trace logging that will help identify the exact validation error in your recipe file.
-          verbose: true
+          # verbose: true
