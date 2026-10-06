@@ -26,7 +26,6 @@ modules:
   - type: dnf
     repos:
       copr: []
-     
     install:
       packages:
         - bat #cat but better 
