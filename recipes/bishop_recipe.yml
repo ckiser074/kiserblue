@@ -55,8 +55,8 @@ modules:
         - wsdd
         - https://github.com/AprilNEA/OpenLogi/releases/download/v0.8.11/openlogi-v0.8.11-linux-amd64.rpm
     remove:
-        - firefox
-        - firefox-langpacks
+      - firefox
+      - firefox-langpacks
 
   - type: default-flatpaks
     configurations:
@@ -71,7 +71,6 @@ modules:
           - com.usebottles.bottles
           - org.audacityteam.Audacity
           - org.musicbrainz.Picard
-      - scope: user
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
 
