@@ -24,8 +24,6 @@ modules:
       - 10-install-winboat.sh
 
   - type: dnf
-    repos:
-      copr: []
     install:
       packages:
         - bat # cat but better
