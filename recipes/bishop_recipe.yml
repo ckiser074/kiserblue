@@ -67,6 +67,8 @@ modules:
         - samba-winbind # samba winbind service
         - samba-winexe # samba winexe service
         - wsdd # web service discovery for samba
+
+        - https://github.com/AprilNEA/OpenLogi/releases/download/v0.8.11/openlogi-v0.8.11-linux-amd64.rpm
         
     remove:
       packages:
@@ -118,7 +120,3 @@ modules:
           - Barlow
           - BebasNeue
           - Jost
-          
-  - type: rpm-ostree
-    install:
-      - https://github.com/AprilNEA/OpenLogi/releases/download/v0.8.11/openlogi-v0.8.11-linux-amd64.rpm
