@@ -25,50 +25,45 @@ modules:
 
   - type: dnf
     install:
-        - bat # cat but better
-        - btrfs-assistant # btrfs gui tool
-        - btrfs-progs # btrfs tools
-        # - dialog
-        - duf # disk usage utility
-        # - fastfetch # system info tool
-        - fd-find # find alternative
-        # - git # version control system
-        # - git-delta # git diff viewer
-        - iftop # network monitor
-        # - konsole # terminal emulator
-        - libvirt-daemon-config-network # libvirt network support
-        - libvirt-daemon-kvm # kvm support for libvirt
-        - micro # terminal based text editor
-        - pwgen # password generator
-        - qemu-kvm # kvm support for qemu
-        - ripgrep # search tool
-        - snapper # btrfs snapshot tool
-        # - starship # shell prompt
-        - syncthing # file sync tool
-        # - tailscale # vpn tool
-        - tldr # simplified man pages
-        - virt-install # tool for installing vms
-        # - virt-manager # vm manager gui
-        # - virt-viewer # vm viewer
-        - zsh
-        - zsh-autosuggestions # zsh plugin for command autosuggestions
-        - zsh-syntax-highlighting # zsh plugin for syntax highlighting
-
-        - rsync
-        - rclone
-
-        # network shares
-        - samba # samba
-        - nmap # network scanner
-        - samba-winbind # samba winbind service
-        - samba-winexe # samba winexe service
-        - wsdd # web service discovery for samba
-
-        - https://github.com/AprilNEA/OpenLogi/releases/download/v0.8.11/openlogi-v0.8.11-linux-amd64.rpm
-
+      - bat # cat but better
+      - btrfs-assistant # btrfs gui tool
+      - btrfs-progs # btrfs tools
+      # - dialog
+      - duf # disk usage utility
+      # - fastfetch # system info tool
+      - fd-find # find alternative
+      # - git # version control system
+      # - git-delta # git diff viewer
+      - iftop # network monitor
+      # - konsole # terminal emulator
+      - libvirt-daemon-config-network # libvirt network support
+      - libvirt-daemon-kvm # kvm support for libvirt
+      - micro # terminal based text editor
+      - pwgen # password generator
+      - qemu-kvm # kvm support for qemu
+      - ripgrep # search tool
+      - snapper # btrfs snapshot tool
+      # - starship # shell prompt
+      - syncthing # file sync tool
+      # - tailscale # vpn tool
+      - tldr # simplified man pages
+      - virt-install # tool for installing vms
+      # - virt-manager # vm manager gui
+      # - virt-viewer # vm viewer
+      - zsh
+      - zsh-autosuggestions # zsh plugin for command autosuggestions
+      - zsh-syntax-highlighting # zsh plugin for syntax highlighting
+      - rsync
+      - rclone
+      # network shares
+      - samba # samba
+      - nmap # network scanner
+      - samba-winbind # samba winbind service
+      - samba-winexe # samba winexe service
+      - wsdd # web service discovery for samba
+      - https://github.com/AprilNEA/OpenLogi/releases/download/v0.8.11/openlogi-v0.8.11-linux-amd64.rpm
     options:
       tsflags: noscripts
-
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
