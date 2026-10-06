@@ -24,8 +24,8 @@ modules:
       - 10-install-winboat.sh
 
   - type: dnf
+    tsflags: noscripts
     install:
-      tsflags: noscripts
       packages:
         - bat
         - btrfs-assistant
