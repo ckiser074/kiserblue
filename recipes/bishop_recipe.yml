@@ -37,6 +37,7 @@ modules:
         - libvirt-daemon-config-network
         - libvirt-daemon-kvm
         - micro
+        - mediawriter
         - pwgen
         - qemu-kvm
         - ripgrep
