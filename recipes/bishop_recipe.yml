@@ -55,7 +55,6 @@ modules:
         - samba-winbind
         - samba-winexe
         - wsdd
-        - yazi
         - https://github.com/AprilNEA/OpenLogi/releases/download/v0.8.13/openlogi-v0.8.13-linux-amd64.rpm
     remove:
       packages:
