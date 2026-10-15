@@ -55,7 +55,7 @@ modules:
         - samba-winbind
         - samba-winexe
         - wsdd
-        - https://github.com/AprilNEA/OpenLogi/releases/download/v0.8.13/openlogi-v0.8.13-linux-amd64.rpm
+        - https://github.com/AprilNEA/OpenLogi/releases/download/v0.8.14/openlogi-v0.8.14-linux-amd64.rpm
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
