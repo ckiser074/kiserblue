@@ -54,6 +54,8 @@ modules:
         - nmap
         - samba-winbind
         - samba-winexe
+        - steam
+        - lutris
         - wsdd
         - https://github.com/AprilNEA/OpenLogi/releases/download/v0.8.17/openlogi-v0.8.17-linux-amd64.rpm
     remove:
