@@ -78,6 +78,7 @@ modules:
           - org.audacityteam.Audacity
           - org.musicbrainz.Picard
           - com.valvesoftware.Steam
+          - md.obsidian.Obsidian
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
 
