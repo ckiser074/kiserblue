@@ -87,7 +87,7 @@ modules:
       nerd-fonts:
         - FiraCode
         - JetBrainsMono
-        - NerdFontsSymbolsOnly
+        # - NerdFontsSymbolsOnly
         - Ubuntu
         - CascadiaCode
         - CascadiaMono
